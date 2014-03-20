@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>jQuery Gallery</title>
+  <link rel="stylesheet" href="stylesheet.css">
+  <link rel="stylesheet" href="fancybox/jquery.fancybox.css">      
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  
+    <div class="gallery clearfix">
+      <div class="pics clearfix">
+        <div class="thumbs">
+          <div class="preview">
+              <a href="#" class="selected" data-full="images/luna1.jpg" data-title="Spring 2013 | Luna + Hill">
+                <img src="images/luna1.jpg"/>
+              </a>
+          </div>
+          <div class="preview">    
+              <a href="#" data-full="images/luna2.jpg" data-title="Spring 2013 | Luna + Hill">
+                <img src="images/luna2.jpg"/>
+              </a>
+          </div>
+          <div class="preview">
+              <a href="#" data-full="images/luna3.jpg" data-title="Spring 2013 | Luna + Hill">
+                <img src="images/luna3.jpg"/>
+              </a>
+          </div>
+          <div class="preview">
+              <a href="#" data-full="images/luna4.jpg" data-title="Spring 2013 | Luna + Hill">
+                <img src="images/luna4.jpg"/>
+              </a>
+          </div>
+          <div class="preview">
+              <a href="#" data-full="images/luna5.jpg" data-title="Spring 2013 | Luna + Hill">
+                <img src="images/luna5.jpg"/>
+              </a>
+          </div>
+        </div> 
+        <a href="images/luna1.jpg" class="full" title="Spring 2013 | Luna + Hill">
+            <!-- first image is viewable to start -->
+            <img src="images/luna1.jpg">
+        </a>
+      </div>
+    </div>
+  
+  
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="fancybox/jquery.fancybox.js?v=2.1.4"></script>
+
+  <script>
+  $(document).ready(function(){
+
+      $(".preview a").on("click", function(){
+          $(".selected").removeClass("selected");
+          $(this).addClass("selected");
+          var picture = $(this).data();
+          
+          event.preventDefault(); //prevents page from reloading every time you click a thumbnail
+
+
+          $(".full img").fadeOut( 100, function() { 
+            $(".full img").attr("src", picture.full);
+            $(".full").attr("href", picture.full);
+            $(".full").attr("title", picture.title);
+
+        }).fadeIn();
+
+
+      });// end on click
+
+      $(".full").fancybox({
+          helpers : {
+              title: {
+                  type: 'inside'
+              }
+          },
+          closeBtn : true,
+      });
+
+
+  });//end doc ready
+
+  
+
+  </script>
+
+</body>
+</html>
+
+
